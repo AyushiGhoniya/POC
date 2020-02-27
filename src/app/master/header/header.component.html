@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;">
+    <a class="navbar-brand">POC</a>
+    <button class="navbar-toggler" type="button"  (click)="toogleNavbar()" data-toggle="collapse" data-target="#navb" aria-controls="navb" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navb" [ngClass]="{'show':navbarOpen}">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="['/poc/dashboard']">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/poc/product']">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/poc/order']">Order</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/poc/stockgrid']">Stock Grid</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-dark my-2 my-sm-0" type="button">
+                <i class="fa fa-user"></i>
+            </button>
+            <button class="btn btn-danger" (click)="logout()">Logout</button>
+        </form>
+    </div>
+</nav>

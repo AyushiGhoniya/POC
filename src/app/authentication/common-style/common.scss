@@ -1,0 +1,60 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+a {
+    float: right; 
+    margin-top: -10px;
+    color: rgb(68, 139, 233);
+    cursor: pointer;
+}
+
+a:hover {
+    color: rgb(10, 92, 199);
+}
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+}
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 50%; 
+    }
+
+    .login-form{
+        margin-top: 65%;
+    }
+}
+
+label {
+    font-size: larger;
+}
+
+.input-group-text {
+    background: #000000 !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+}

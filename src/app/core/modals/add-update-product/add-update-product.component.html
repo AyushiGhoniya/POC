@@ -1,0 +1,84 @@
+<body>
+    <!-- The Modal -->
+    <div id="productModal" class="modal">
+
+        <!-- The Close Button -->
+        <span class="close" (click)="modalService.hideModal('productModal')">&times;</span>
+
+        <div class="container">
+            <div class="modal-title">
+                <ng-container *ngIf="modalService.formProperty=='edit'">
+                    <h3>{{ modalService.fetchedProduct.id }} - {{ modalService.fetchedProduct.name }}</h3>
+                </ng-container>
+                <ng-container *ngIf="modalService.formProperty=='add'">
+                    <h3>Create Product</h3>
+                </ng-container>
+            </div>
+            <hr>
+            <div class="modal-content">
+                <form [formGroup]="addUpdateProductForm" (ngSubmit)="addUpdateProduct()">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name : </label>
+                                <input type="text" formControlName="name" class="form-control" placeholder="Product Name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Supplier : </label>
+                                <input type="text" formControlName="supplier" class="form-control" placeholder="Enter supplier name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Category : </label>
+                                <input type="text" formControlName="category" class="form-control" placeholder="Enter category name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Price : </label>
+                                <input type="text" formControlName="price" class="form-control" placeholder="Enter price">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Discounted">
+                        <label>Discounted :</label><br>
+                        <input id="Yes" type="radio" value="Yes" name="discounted" (change)="isShowDiscount($event)"
+                            formControlName="discounted" checked>
+                        <label for="Yes">Yes</label>
+                        <input id="No" type="radio" value="No" name="discounted" (change)="isShowDiscount($event)"
+                            formControlName="discounted">
+                        <label for="No">No</label>
+                    </div>
+                    
+                    <div *ngIf="showDiscount">
+                        <!-- <label>Discount :</label>
+                        <input type="text" class="form-control" formControlName="discount" placeholder="Enter discount below 30%">% -->
+                        <div class="form-group">
+                            <div class="input-group" style="width: 250px;">
+                               <div class="input-group-append">
+                                  <span class="input-group-text"><i class="fa fa-percent"></i></span>
+                               </div>
+                               <input type="number" class="form-control" formControlName="discount" max="30" min="1" placeholder="Enter discount below 30%">
+                            </div>
+                         </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success" [disabled]="!addUpdateProductForm.valid">Submit</button>
+                
+                </form>
+            </div>
+            <hr>
+            <div class="caption">
+                <button class="btn btn-dark" style="float: right; margin-right: 30px;" (click)="modalService.hideModal('productModal')">Close</button>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,86 @@
+<body>
+  <app-modals></app-modals>
+  <h2>Product List</h2>
+
+  <div class="container">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <form class="form-inline">
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+          </div>
+          <input type="text" name="searchText" class="form-control" [(ngModel)]="searchText"
+            (input)="getFilteredProducts($event)" placeholder="Id/Name">
+        </div>
+
+        <div class="dropdown">
+          <select id="suppliers" class="btn btn-light categories" (change)="getFilteredProducts($event, 'supplier')">
+            <option selected>Supplier</option>
+            <option *ngFor="let supplier of suppliers">
+              {{ supplier }}
+            </option>
+          </select>
+        </div>
+
+        <div class="dropdown">
+          <select id="categories" class="btn btn-light categories" (change)="getFilteredProducts($event, 'category')">
+            <option selected>Category</option>
+            <option *ngFor="let category of categories">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+
+      </form>
+
+      <div class="button-group">
+        <button class="btn btn-secondary" id="btnCreate" data-toggle="tooltip" title="Create Product"
+          (click)="showAddUpdateModal()">
+          <i class="fa fa-plus"></i>
+        </button>
+        <button class="btn btn-success" id="btnETE">Export to Excel</button>
+      </div>
+    </nav>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Supplier</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Discounted</th>
+        <th>Discount</th>
+        <th>More</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.supplier }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.discounted }}</td>
+        <td>
+          <ng-container *ngIf="product.discounted==='No'">
+            -
+          </ng-container>
+          <ng-container *ngIf="product.discounted==='Yes'">
+            <input class="form-control" type="number" max="30" id="discount" value="{{ product.discount }}">
+          </ng-container>
+        </td>
+        <td>
+          <button class="btn btn-info" (click)="showAddUpdateModal(product)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ngb-pagination class="pagination" [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page"
+    (pageChange)="pageChange()"></ngb-pagination>
+
+</body>

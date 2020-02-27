@@ -1,0 +1,120 @@
+    /* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(52, 58, 64, 0.8); /* Fallback color */
+}
+  
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  max-height: 60vh;
+  padding: 20px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 50px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+.container {
+  background-color: rgb(245, 243, 243);
+  height: 90%;
+  width: 70%;
+  max-width: 800px;
+  max-height: 1000px;
+  padding: 50px 0px;
+  border-radius: 5px;
+}
+
+body .with-modal {
+  overflow: hidden;
+}
+
+.modal-title {
+  margin: -20px 0px 30px 40px;
+  font-size: larger;
+}
+
+.form-control {
+  width: 250px;
+}
+
+#Yes {
+  margin: 0px 5px 0px 0px;
+}
+#No {
+  margin: 0px 5px 0px 13px;
+}
+
+.input-group-text {
+  background: #000000 !important;
+  color: white !important;
+  border: 0 !important;
+  border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.categories {
+  width: 140px;
+  height: 38px;
+  box-shadow: none;
+  outline: none;
+}

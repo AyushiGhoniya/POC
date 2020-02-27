@@ -1,0 +1,32 @@
+.sidenav {
+    height: 100%;
+    background-color: #000;
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(70, 70, 70));
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+    font-size: 60px;
+}
+
+@media screen and (min-width: 768px){
+    .sidenav{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
