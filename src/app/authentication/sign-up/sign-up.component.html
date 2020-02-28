@@ -12,7 +12,7 @@
                      <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                   </div>
                   <input email type="email" name="email" class="form-control" placeholder="abc@xyz.com"
-                     [(ngModel)]='email' #txtEmail='ngModel' required>
+                     [(ngModel)]='user.email' #txtEmail='ngModel' required>
                </div>
             </div>
             <div *ngIf="txtEmail.touched && txtEmail.errors?.required" class="alert alert-danger">
@@ -26,7 +26,7 @@
                      <span class="input-group-text" style="font-size: 23px;"><i class="fa fa-lock"></i></span>
                   </div>
                   <input type="password" class="form-control" placeholder="Password" name="password"
-                     [(ngModel)]="password" #txtPassword='ngModel' minlength="6" maxlength="10" required>
+                     [(ngModel)]="user.password" #txtPassword='ngModel' minlength="6" maxlength="10" required>
                </div>
             </div>
             <div *ngIf="txtPassword.touched && txtPassword.errors?.required" class="alert alert-danger">
@@ -40,7 +40,7 @@
                      <span class="input-group-text" style="font-size: 23px;"><i class="fa fa-lock"></i></span>
                   </div>
                   <input type="password" class="form-control" placeholder="Confirm Password" name="txtConfPassword"
-                     [(ngModel)]="confirmPassword" #txtConfPassword='ngModel' required>
+                     [(ngModel)]="user.confirmPassword" #txtConfPassword='ngModel' required>
                </div>
             </div>
             <div *ngIf="txtConfPassword.touched && txtConfPassword.errors?.required" class="alert alert-danger">

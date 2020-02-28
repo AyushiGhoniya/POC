@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { IUser } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,9 +10,17 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class SignUpComponent implements OnInit {
 
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+  // email: string = '';
+  // password: string = '';
+  // confirmPassword: string = '';
+
+  user: IUser = {
+    id: '',
+    userName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  }
 
   constructor(
     private route: Router,

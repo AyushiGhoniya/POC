@@ -28,11 +28,6 @@ export class ProductService {
   //   return this.angularFireDatabase.list<IProduct>('/products', ref => ref.orderByChild('id').startAt(start).endAt(end)).valueChanges()
   // }
 
-  //Filtered products
-  getFilteredProductsFromFirebase(property, searchText) {
-    return this.angularFireDatabase.list<IProduct>('/products', ref => ref.orderByChild(property).equalTo(searchText)).valueChanges()
-  }
-
   //get supplier and category array
   getSuppliersOrCategories(property) {
     property = property.filter((value, index) => {
@@ -53,11 +48,7 @@ export class ProductService {
   }
 
   //add product using firebase
-  addProduct(product){
+  addOrUpdateProduct(product){
     this.angularFireDatabase.object('/products/' + (product.id - 1)).set(product)
-  }
-
-  updateProduct(product){
-    this.angularFireDatabase.object('/products/'+(product.id-1)).set(product)
   }
 }

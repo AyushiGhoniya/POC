@@ -19,6 +19,7 @@ export class ModalService {
   showModal(product: IProduct) {
     this.showAddUpdateModal = true;
     let body = document.body;
+    body.style.overflow = 'hidden';
     if(product) {
       this.formProperty = 'edit';
       this.fetchedProduct = product;

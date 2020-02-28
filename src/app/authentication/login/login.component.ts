@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { IUser } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,17 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  email: string = '';
-  password: string = '';
+  // email: string = '';
+  // password: string = '';
 
+  user: IUser = {
+    id: '',
+    userName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  }
+  
   constructor(
     private router: Router,
     public authenticationService: AuthenticationService
@@ -19,6 +28,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  login(formData) {
+    this.authenticationService.Login(formData);
   }
 
   //click on create account

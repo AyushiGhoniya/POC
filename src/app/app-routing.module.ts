@@ -6,7 +6,7 @@ import { CanLoadService } from './authGuard/can-load.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/login',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {

@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { FilterPipe } from 'src/app/pipe/filter.pipe';
 import { ModalService } from 'src/app/services/modal.service';
 import { Location } from '@angular/common';
+import { ExcelService } from 'src/app/services/excel.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ProductComponent implements OnInit {
   filteredProducts: IProduct[] = [];
   page: number = 1;
   pageSize : number = 10;
-  collectionSize : number = 60;
+  collectionSize : number;
   start: number;
   end: number;
 
@@ -34,16 +35,23 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private filter: FilterPipe,
     public modalService: ModalService,
-    private location: Location
+    private location: Location,
+    private excelService: ExcelService
   ) { }
 
   ngOnInit(): void {
-
     this.pageChange()
-    // this.productService.getData().subscribe(data => {
-    //   this.products = data;
-    //   console.log(data.length)
-    // })
+  }
+
+  //Pagination event binding
+  pageChange() {
+    this.productService.getProductList().subscribe(data => {
+      this.collectionSize = data.length
+      this.products = data;
+      this.filteredProducts = data;
+      this.suppliers = this.productService.getSuppliersOrCategories(data.map(value => value['supplier']));
+      this.categories = this.productService.getSuppliersOrCategories(data.map(value => value['category']));
+    })
   }
 
   //Filtered Products for input tag
@@ -65,8 +73,8 @@ export class ProductComponent implements OnInit {
     console.log(this.products)
   }
 
-  //
-  showAddUpdateModal(product?: IProduct) {
+  //popup Add/Edit product form
+  showAddUpdateProductForm(product?: IProduct) {
     if(product)
     {
       console.log('edit :: ' + product.id + ', ' + product.name)
@@ -78,35 +86,12 @@ export class ProductComponent implements OnInit {
     this.modalService.showModal(product)
   }
 
-  //Pagination event binding
-  pageChange() {
-    this.productService.getProductList().subscribe(data => {
-      this.collectionSize = data.length
-      this.products = data;
-      this.filteredProducts = data;
-      this.suppliers = this.productService.getSuppliersOrCategories(data.map(value => value['supplier']));
-      this.categories = this.productService.getSuppliersOrCategories(data.map(value => value['category']));
-    })
-  }
-
-  //Add Product to Firedatabase
-  /*addData() {
-    this.product = {
-      id: 100,
-      name: "aaaaaa",
-      supplier: "bbbbbbb",
-      category: "ccccccc",
-      price: 30000,
-      discounted: "Yes",
-      discount: 5
-    }
-
-    this.productService.addData(this.product).subscribe(data => {
-      console.log(this.product)
-      console.log("sucess");
-    })
-  }*/
-
   
+
+  exportToExcel() {
+    let file = 'Products_List.csv';
+    let columns = ['Id', 'Name', 'Supplier', 'Category', 'Price', 'Discounted', 'Discount'];
+    this.excelService.expoerToExcel(file, columns, this.products.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize))
+  }  
 
 }
